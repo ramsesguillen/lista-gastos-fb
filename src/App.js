@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Contenedor } from './components/layouts/Contenedor'
+import { AppRouter } from './routes/AppRouter'
+import {Helmet} from "react-helmet";
+import img from './assets/img/logo.png';
+import { Fondo } from './components/layouts/Fondo';
+import { AuthProvider } from './context/AuthProvider';
+import { TotalGastadoProvider } from './context/TotalGastadoProvider';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    return (
+        <>
+            <Helmet>
+                <link rel="shortcut icon" href={ img } type="image/x-icon" />
+                <title>| MIS GASTOS |</title>
+            </Helmet>
+
+            <AuthProvider>
+                <TotalGastadoProvider>
+                    <Contenedor>
+                        <AppRouter />
+                    </Contenedor>
+                </TotalGastadoProvider>
+            </AuthProvider>
+
+            <Fondo />
+        </>
+    )
 }
-
-export default App;
